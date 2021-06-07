@@ -1,0 +1,18 @@
+@import "reset";
+@import "fonts";
+@import "colors";
+
+@import "App";
+@import "./components/Quiz";
+@import "./components/ActiveQuiz";
+@import "./components/AnswersList";
+@import "./components/AnswerItem";
+@import "./components/FinishedQuiz";
+@import "components/UI/Button";
+
+body {
+  font-family: $mainFont;
+  background: $bgColor;
+  padding: 10px;
+  color: #fff;
+}
