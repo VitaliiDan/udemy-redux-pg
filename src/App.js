@@ -1,11 +1,14 @@
 import React from "react";
+import Layout from './hoc/Layout/Layout'
 import Quiz from "./components/Quiz";
 
 function App() {
     return (
-        <div className='appWrapper'>
-            <Quiz/>
-        </div>
+        <Layout>
+            <div className='appWrapper'>
+                <Quiz/>
+            </div>
+        </Layout>
     );
 };
 

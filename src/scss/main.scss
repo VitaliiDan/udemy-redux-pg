@@ -9,10 +9,12 @@
 @import "./components/AnswerItem";
 @import "./components/FinishedQuiz";
 @import "components/UI/Button";
+@import "components/Navigation/MenuToggle/MenuToggle";
+@import "components/Navigation/Drawer/Drawer";
 
 body {
   font-family: $mainFont;
   background: $bgColor;
-  padding: 10px;
+  padding-top: 200px;
   color: #fff;
 }
