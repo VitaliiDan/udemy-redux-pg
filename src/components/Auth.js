@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import Button from './UI/Button';
 import Input from './UI/Input';
 import is from 'is_js';
@@ -96,12 +97,32 @@ const Auth = () => {
         })
     }
 
-    const loginHandler = () => {
-
+    const loginHandler = async () => {
+        const authData = {
+            email: state.formControls.email.value,
+            password: state.formControls.password.value,
+            returnSecureToken: true
+        }
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDik8yz7MjMupEvGUk2UTxAZR0eYm2tJBY', authData)
+            console.log(response)
+        } catch (e) {
+            console.log(e);
+        }
     }
 
-    const signinhandler = () => {
-
+    const registerHandler = async () => {
+        const authData = {
+            email: state.formControls.email.value,
+            password: state.formControls.password.value,
+            returnSecureToken: true
+        }
+        try {
+            const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDik8yz7MjMupEvGUk2UTxAZR0eYm2tJBY', authData)
+            console.log(response)
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const submitHandler = event => {
@@ -123,7 +144,7 @@ const Auth = () => {
                     </Button>
                     <Button
                         type='buttonPrimary'
-                        onClick={signinhandler}
+                        onClick={registerHandler}
                         disabled={!state.isFormValid}
                     >
                         SignIn

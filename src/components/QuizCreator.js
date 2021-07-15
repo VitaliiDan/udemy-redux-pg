@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import axios from '../axios/axios-quiz';
 import Auxiliary from '../hoc/Auxiliary'
 import Button from './UI/Button';
 import Input from './UI/Input';
-import Select from './UI/Select'
-import {createControl, validate, validateForm} from '../form/formFramework'
+import Select from './UI/Select';
+import {createControl, validate, validateForm} from '../form/formFramework';
 
 function createOptionControl(number) {
     return createControl({
@@ -45,10 +46,49 @@ const QuizCreator = () => {
 
     const addQuestionHandler = event => {
         event.preventDefault()
+
+        const quiz = [...state.quiz]
+        const index = quiz.length + 1;
+
+        const {question, option1, option2, option3, option4} = state.formControls
+
+        const questionItem = {
+            question: question.value,
+            id: index,
+            rightAnswerId: state.rightAnswerId,
+            answers: [
+                {text: option1.value, id: option1.id},
+                {text: option2.value, id: option2.id},
+                {text: option3.value, id: option3.id},
+                {text: option4.value, id: option4.id}
+            ]
+        }
+
+        quiz.push(questionItem);
+
+        setState({
+            quiz,
+            isFormValid: false,
+            rightAnswerId: 1,
+            formControls: createFormControls()
+        })
     }
 
-    const createQuizHandler = () => {
+    const createQuizHandler = async event => {
+        event.preventDefault()
 
+        try {
+            await axios.post('quizes.json', state.quiz);
+
+            setState({
+                quiz: [],
+                isFormValid: false,
+                rightAnswerId: 1,
+                formControls: createFormControls()
+            })
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const changeHandler = (value, controlName) => {
