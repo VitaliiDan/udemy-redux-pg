@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React,
+{
+    // useEffect,
+    useState
+} from "react";
 import ActiveQuiz from "./ActiveQuiz";
 import FinishedQuiz from "./FinishedQuiz";
 
-const Quiz = () => {
+const Quiz = (props) => {
     const [state, setState] = useState({
         results: {}, // {[id]: 'successColor' 'errorColor'}
         isFinished: false,
@@ -34,9 +38,9 @@ const Quiz = () => {
         ]
     })
 
-    useEffect(() => {
-        // console.log(state);
-    }, [state])
+    // useEffect(() => {
+    //     console.log(props.match.params.id);
+    // }, [])
 
     const onAnswerClickHandler = (answerId) => {
         if (state.answerState) {
@@ -117,23 +121,25 @@ const Quiz = () => {
 
     return (
         <div className='quizWrapper'>
-            <h1>Answer all questions:</h1>
-            {
-                state.isFinished
-                    ? <FinishedQuiz
-                        results={state.results}
-                        quiz={state.quiz}
-                        onRetry={retryHandler}
-                    />
-                    : <ActiveQuiz
-                        answers={state.quiz[state.activeQuestion].answers}
-                        question={state.quiz[state.activeQuestion].question}
-                        onAnswerClick={onAnswerClickHandler}
-                        quizLength={state.quiz.length}
-                        answerNumber={state.activeQuestion + 1}
-                        state={state.answerState}
-                    />
-            }
+            <div>
+                <h1>Answer all questions:</h1>
+                {
+                    state.isFinished
+                        ? <FinishedQuiz
+                            results={state.results}
+                            quiz={state.quiz}
+                            onRetry={retryHandler}
+                        />
+                        : <ActiveQuiz
+                            answers={state.quiz[state.activeQuestion].answers}
+                            question={state.quiz[state.activeQuestion].question}
+                            onAnswerClick={onAnswerClickHandler}
+                            quizLength={state.quiz.length}
+                            answerNumber={state.activeQuestion + 1}
+                            state={state.answerState}
+                        />
+                }
+            </div>
 
         </div>
     )

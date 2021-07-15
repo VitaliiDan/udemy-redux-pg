@@ -8,13 +8,18 @@
 @import "./components/AnswersList";
 @import "./components/AnswerItem";
 @import "./components/FinishedQuiz";
+@import "./components/QuizList";
+@import "./components/QuizCreator";
+@import "./components/Auth";
 @import "components/UI/Button";
-@import "components/Navigation/MenuToggle/MenuToggle";
-@import "components/Navigation/Drawer/Drawer";
+@import "components/UI/Backdrop";
+@import "components/UI/Input";
+@import "components/UI/Select";
+@import "components/Navigation/MenuToggle";
+@import "components/Navigation/Drawer";
 
 body {
   font-family: $mainFont;
   background: $bgColor;
-  padding-top: 200px;
   color: #fff;
 }

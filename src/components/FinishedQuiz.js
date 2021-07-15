@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./UI/Button";
+import {Link} from 'react-router-dom';
 
 const FinishedQuiz = ({results, quiz, onRetry}) => {
     const successCount = Object.keys(results).reduce((acc, key) => {
@@ -32,7 +33,9 @@ const FinishedQuiz = ({results, quiz, onRetry}) => {
 
             <div>
                 <Button onClick={onRetry} type='buttonPrimary'>repeat</Button>
-                <Button type='buttonSuccess'>repeat</Button>
+                <Link to='/'>
+                    <Button type='buttonSuccess'>repeat</Button>
+                </Link>
             </div>
         </div>
     )
